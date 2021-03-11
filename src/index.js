@@ -17,26 +17,30 @@ server.listen(
 */
 
 const express = require('express');
+const path = require('path');
+
+
 const app = express();
 
 app.get(
   '/',
   (req, res) => {
-    res.send('<h1>Home Page</h1>');
+    res.sendFile(path.join(__dirname, 'pages/home.html'));
+    
   }
 );
 
 app.get(
   '/contacts',
   (req, res) => {
-    res.send('<h1>Pagina dei Contatti</h1>');
+    res.sendFile(path.join(__dirname, 'pages/contacts.html'));
   }
 );
 
 app.get(
   '/about',
   (req, res) => {
-    res.send('<h1>About...</h1>');
+    res.sendFile(path.join(__dirname, 'pages/about.html'));
   }
 );
 
@@ -57,5 +61,7 @@ app.listen(
   3000,
   () => {
     console.log('Server in esecuzione sulla porta 3000');
+    console.log(__dirname);
+    console.log(path.join(__dirname, 'pages/about.html')); 
   }
 );
