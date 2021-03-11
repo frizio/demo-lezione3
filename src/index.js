@@ -1,4 +1,15 @@
-console.log('Demo Web Application');
+var http = require('http');
 
+var server = http.createServer( 
+  (req, res) => {
+  res.writeHead(200);
+  res.end('Ciao a tutti, sono un web server!');
+  }
+);
 
-console.log('Done');
+server.listen(
+  3000,
+  () => {
+    console.log('Server in esecuzione sulla porta 3000')
+  }
+);
