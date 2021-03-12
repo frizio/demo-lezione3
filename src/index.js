@@ -16,7 +16,9 @@ server.listen(
 );
 */
 
+
 const express = require('express');
+
 const path = require('path');
 
 
@@ -26,7 +28,6 @@ app.get(
   '/',
   (req, res) => {
     res.sendFile(path.join(__dirname, 'pages/home.html'));
-    
   }
 );
 
@@ -65,3 +66,4 @@ app.listen(
     console.log(path.join(__dirname, 'pages/about.html')); 
   }
 );
+
