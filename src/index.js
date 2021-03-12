@@ -13,6 +13,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'pages') );
 app.engine('html', ejs.renderFile);
 
+// File statici serviti dal web server
+app.use( express.static( path.join(__dirname, 'public') ) );
+
 
 // Middleware
 
