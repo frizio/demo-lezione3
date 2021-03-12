@@ -1,47 +1,41 @@
-/*
-var http = require('http');
-
-var server = http.createServer( 
-  (req, res) => {
-    res.writeHead(200);
-    res.end('<h1>Home Page!!!!!!</h1>');
-  }
-);
-
-server.listen(
-  3000,
-  () => {
-    console.log('Server in esecuzione sulla porta 3000')
-  }
-);
-*/
-
-
+// Importiamo i moduli installati con npm
 const express = require('express');
-
 const path = require('path');
+const ejs = require('ejs');
 
-
+// Instanziare i moduli
 const app = express();
 
+// Impostazioni
+app.set('port', 3000);
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'pages') );
+app.engine('html', ejs.renderFile);
+
+
+// Middleware
+
+
+// Routes
 app.get(
   '/',
   (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages/home.html'));
+    res.render('home.html', {'title': 'Home Page'});
   }
 );
 
 app.get(
   '/contacts',
   (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages/contacts.html'));
+    res.render('contacts.html', {'title': 'Contacts'});
   }
 );
 
 app.get(
   '/about',
   (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages/about.html'));
+    res.render('about.html', {'title': 'About'});
   }
 );
 
@@ -57,9 +51,9 @@ app.get(
   }
 );
 
-
+// Lanciamo il web server
 app.listen(
-  3000,
+  app.get('port'),
   () => {
     console.log('Server in esecuzione sulla porta 3000');
     console.log(__dirname);
