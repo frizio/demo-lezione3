@@ -31,7 +31,18 @@ app.get(
 app.get(
   '/contacts',
   (req, res) => {
-    res.render('contacts.html', {'title': 'Contacts'});
+    console.log('Chiamata alla risorsa sotto /contacts');
+
+    console.log(req.query);
+    let name_maiuscolo = '';
+    
+    if (req.query.name !== undefined) {
+      let name = req.query.name;
+      // Simuliamo un comportamento lato server
+      name_maiuscolo = name.toUpperCase();
+    }
+
+    res.render('contacts.html', {'title': 'Contacts', 'name': name_maiuscolo});
   }
 );
 
@@ -59,8 +70,6 @@ app.listen(
   app.get('port'),
   () => {
     console.log('Server in esecuzione sulla porta 3000');
-    console.log(__dirname);
-    console.log(path.join(__dirname, 'pages/about.html')); 
   }
 );
 
