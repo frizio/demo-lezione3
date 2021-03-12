@@ -35,7 +35,7 @@ app.get(
 
     console.log(req.query);
     let name_maiuscolo = '';
-    
+
     if (req.query.name !== undefined) {
       let name = req.query.name;
       // Simuliamo un comportamento lato server
@@ -47,9 +47,16 @@ app.get(
 );
 
 app.get(
-  '/about',
+  '/about/:name',
   (req, res) => {
-    res.render('about.html', {'title': 'About'});
+    console.log('Hit path /about');
+    let name_maiuscolo = '';
+    if (req.params.name !== undefined) {
+      let name = req.params.name;
+      // Simuliamo un comportamento lato server
+      name_maiuscolo = name.toUpperCase();
+    }
+    res.render('about.html', {'title': 'About', 'name': name_maiuscolo});
   }
 );
 
